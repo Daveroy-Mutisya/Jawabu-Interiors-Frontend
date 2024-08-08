@@ -47,8 +47,8 @@ export function NavBar() {
   }
 
   return (
-<div className="bg-black text-white p-4">
-  <div className="flex flex-wrap items-center justify-between z-50">
+<div className="bg-black text-white p-4 z-50">
+  <div className="flex flex-wrap items-center justify-between">
     {/* Left Side - Jawabu Interiors */}
     <div className="flex items-center space-x-4">
       <h1 className="text-3xl font-extrabold lg:text-3xl">
@@ -62,88 +62,44 @@ export function NavBar() {
       </h1>
     </div>
 
-    {/* Right Side - Navigation Menu */}
-    <div className="flex items-center space-x-4">
-      <div className="text-2xl md:hidden p-4">
-        <button onClick={toggleMenu} className="text-white focus:outline-none">
-          ☰
-        </button>
-      </div>
-      <div className={`md:flex items-center ${menuOpen ? 'block' : 'hidden'} md:block`}>
-        <NavigationMenu>
-          <NavigationMenuList className={`flex ${isMobile ? 'flex-col' : 'flex-row'} space-y-4 md:space-y-0 md:space-x-4`}>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Link href="/" onClick={toggleMenu} className="hover:text-green-500">Home</Link>
-              </NavigationMenuTrigger>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Link href="/Projects" onClick={toggleMenu} className="hover:text-green-500">Projects</Link>
-              </NavigationMenuTrigger>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/About" passHref>
-                <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
-                  About
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/Blog" passHref>
-                <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
-                  Blog
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/Contact" passHref>
-                <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
+    {/* Right Side - Toggle Menu Button */}
+    <div className="md:hidden text-2xl">
+      <button onClick={toggleMenu} className="text-white focus:outline-none">
+        ☰
+      </button>
     </div>
-  </div>
-  {isMobile && menuOpen && (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-50">
-      <div className="flex justify-end p-4">
-        <div onClick={toggleMenu} className="cursor-pointer">
-          <Image src={closeIcon} alt="Close Menu" width={24} height={24} />
-        </div>
-      </div>
+
+    {/* Desktop Navigation Menu */}
+    <div className={`hidden md:flex items-center space-x-4`}>
       <NavigationMenu>
-        <NavigationMenuList className="flex flex-col space-y-2 p-4 text-white">
+        <NavigationMenuList className="flex space-x-4">
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <Link href="/" onClick={toggleMenu} className="hover:text-green-500">Home</Link>
+              <Link href="/" className="hover:text-green-500">Home</Link>
             </NavigationMenuTrigger>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <Link href="/Projects" onClick={toggleMenu} className="hover:text-green-500">Projects</Link>
+              <Link href="/Projects" className="hover:text-green-500">Projects</Link>
             </NavigationMenuTrigger>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/About" passHref>
-              <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
+              <NavigationMenuLink className="hover:text-green-500">
                 About
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/Blog" passHref>
-              <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
+              <NavigationMenuLink className="hover:text-green-500">
                 Blog
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/Contact" passHref>
-              <NavigationMenuLink onClick={toggleMenu} className={cn(navigationMenuTriggerStyle(), "hover:text-green-500")}>
+              <NavigationMenuLink className="hover:text-green-500">
                 Contact
               </NavigationMenuLink>
             </Link>
@@ -151,9 +107,51 @@ export function NavBar() {
         </NavigationMenuList>
       </NavigationMenu>
     </div>
+  </div>
+
+  {/* Mobile Menu */}
+  {isMobile && menuOpen && (
+    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center">
+      {/* Close Button */}
+      <div className="absolute top-4 right-4">
+        <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
+          ✕
+        </button>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      <NavigationMenu>
+        <NavigationMenuList className="flex flex-col items-center space-y-6 text-2xl">
+          <NavigationMenuItem>
+            <Link href="/" onClick={toggleMenu} className="hover:text-green-500">
+              Home
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/Projects" onClick={toggleMenu} className="hover:text-green-500">
+              Projects
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/About" onClick={toggleMenu} className="hover:text-green-500">
+              About
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/Blog" onClick={toggleMenu} className="hover:text-green-500">
+              Blog
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/Contact" onClick={toggleMenu} className="hover:text-green-500">
+              Contact
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   )}
 </div>
-
 
         );
       }
