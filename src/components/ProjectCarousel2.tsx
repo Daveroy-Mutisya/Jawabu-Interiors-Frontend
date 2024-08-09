@@ -76,45 +76,47 @@ export default function ProjectCarousel2() {
   }, [images]);
 
   return (
-    <Carousel className="w-full max-w-lg size-full lg:basis-1/3">
-      <CarouselContent>
-        {projects.length > 0 ? (
-          projects.map((project, index) => (
-            <CarouselItem key={index}>
-              <div className="p-2">
-                <Card className="w-[350px] mx-4 size-full"> {/* Added margin to ensure spacing */}
-                  <CardContent className="flex items-center justify-center p-8">
-                    <Image className="p-8"
-                      src={images[currentImageIndex]?.urls.full || "/images/placeholder.jpg"}
-                      alt={images[currentImageIndex]?.alt_description || "Interior Design"}
-                      width={500}
-                      height={500}
-                    />
-                  </CardContent>
-                  <CardContent className="flex items-center justify-center p-8">
-                    <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                      {project.title}
-                    </h4>
-                  </CardContent>
-                  <CardContent className="flex items-center justify-center p-8">
-                    <span className="text-2xl font-semibold">{project.project_name}</span>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))
-        ) : (
-          <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[250px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
+<Carousel className="w-full max-w-lg lg:basis-1/3">
+  <CarouselContent>
+    {projects.length > 0 ? (
+      projects.map((project, index) => (
+        <CarouselItem key={index}>
+          <div className="p-2">
+            <Card className="w-full mx-2 sm:w-[350px] sm:mx-4"> {/* Adjusted margin for mobile */}
+              <CardContent className="flex items-center justify-center p-4 sm:p-8">
+                <Image className="p-4 sm:p-8"
+                  src={images[currentImageIndex]?.urls.full || "/images/placeholder.jpg"}
+                  alt={images[currentImageIndex]?.alt_description || "Interior Design"}
+                  width={300} // Reduced image size for mobile
+                  height={300}
+                  layout="responsive" // Ensure the image scales properly
+                />
+              </CardContent>
+              <CardContent className="flex items-center justify-center p-4 sm:p-8">
+                <h4 className="scroll-m-20 text-lg sm:text-xl font-semibold tracking-tight">
+                  {project.title}
+                </h4>
+              </CardContent>
+              <CardContent className="flex items-center justify-center p-4 sm:p-8">
+                <span className="text-xl sm:text-2xl font-semibold">{project.project_name}</span>
+              </CardContent>
+            </Card>
           </div>
-        )}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+        </CarouselItem>
+      ))
+    ) : (
+      <div className="flex flex-col space-y-3">
+        <Skeleton className="h-[200px] w-[200px] sm:h-[250px] sm:w-[250px] rounded-xl" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-[150px] sm:w-[250px]" />
+          <Skeleton className="h-4 w-[100px] sm:w-[200px]" />
+        </div>
+      </div>
+    )}
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+
   );
 }

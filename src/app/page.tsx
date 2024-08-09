@@ -15,13 +15,13 @@ export default function Home() {
         </div>
       </div>
       {/* Home-Page-Section 1 */}
-      {/* <section className="relative h-screen flex flex-col gap-2 justify-center items-center">
+      <section className="">
         < LandingSection />
-      </section> */}
+      </section>
       {/* Home-Page-Section 2 */}
-      {/* <section className="relative h-screen flex flex-col justify-center items-center">
+      <section className="relative h-screen flex flex-col justify-center items-center">
         < Philosophy />
-      </section> */}
+      </section>
       {/* Home-Page-Section 3 */}
       {/* <section className="relative h-screen flex flex-col justify-center items-center">
         <FeaturesSection/>
